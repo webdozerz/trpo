@@ -1,0 +1,19 @@
+@import './reset';
+@import './mixins';
+
+//$color: var(--color);
+
+$color: var(--color);
+$color-primary: var(--color-primary);
+$color-secondary: var(--color-secondary);
+$bg: var(--bg);
+$bg-secondary: var(--bg-secondary);
+$border-color: var(--border-color);
+$shadow: var(--shadow);
+
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .5s;
+}
+.fade-enter, .fade-leave-to {
+  opacity: 0;
+}
