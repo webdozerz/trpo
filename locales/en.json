@@ -1,0 +1,21 @@
+{
+  "test": "Hello world!",
+  "signIn": {
+    "label-email": "Email",
+    "placeholder-email": "Enter email",
+    "label-password": "Password",
+    "placeholder-password": "Enter password"
+  },
+  "signUp": {
+    "label-firstName": "First name",
+    "placeholder-firstName": "Enter first name",
+    "label-lastName": "Label example",
+    "placeholder-lastName": "Placeholder example",
+    "label-email": "Email",
+    "placeholder-email": "Enter email",
+    "label-password": "Password",
+    "placeholder-password": "Enter password",
+    "label-repeatPassword": "Repeat password",
+    "placeholder-repeatPassword": "Enter password again"
+  }
+}
