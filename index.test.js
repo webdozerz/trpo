@@ -1,8 +1,9 @@
 import { setupTest, createPage } from '@nuxt/test-utils';
 
 describe('browser type', () => {
-  beforeEach(() => {
+  beforeEach((done) => {
     jest.setTimeout(200000);
+    done();
   });
 
   setupTest({

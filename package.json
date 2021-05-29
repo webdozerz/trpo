@@ -12,7 +12,7 @@
     "generate": "nuxt generate",
     "lint:js": "eslint --ext .js,.vue --ignore-path .gitignore .",
     "lint": "npm run lint:js",
-    "test": "jest --runInBand --detectOpenHandles --testTimeout=120000",
+    "test": "jest --runInBand --detectOpenHandles --testTimeout=200000",
     "coverage": "jest --collectCoverage --"
   },
   "dependencies": {
