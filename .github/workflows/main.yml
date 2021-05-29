@@ -20,6 +20,7 @@ jobs:
           npm ci
           npm run build
           npm test
+          npm coverage
         env:
           CI: true
 

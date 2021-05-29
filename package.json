@@ -12,7 +12,8 @@
     "generate": "nuxt generate",
     "lint:js": "eslint --ext .js,.vue --ignore-path .gitignore .",
     "lint": "npm run lint:js",
-    "test": "jest --forceExit"
+    "test": "jest --forceExit --detectOpenHandles --",
+    "coverage": "jest --collectCoverage --"
   },
   "dependencies": {
     "@nuxtjs/axios": "^5.12.0",
