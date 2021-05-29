@@ -22,6 +22,11 @@ export default {
   buildModules: [
     '@nuxtjs/eslint-module',
   ],
+  build: {
+    babel: {
+      compact: false,
+    },
+  },
   styleResources: {
     scss: ['./assets/scss/main.scss'],
   },
