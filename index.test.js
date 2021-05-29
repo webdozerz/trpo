@@ -1,10 +1,10 @@
 import { setupTest, createPage } from '@nuxt/test-utils';
 
-beforeAll(async () => {
-  jest.setTimeout(10000); // change timeout to 10 seconds
-});
-
 describe('browser', () => {
+  beforeEach(() => {
+    jest.setTimeout(100000);
+  });
+
   setupTest({
     fixture: 'fixtures/basic',
     browser: true,
@@ -14,14 +14,17 @@ describe('browser', () => {
     const page = await createPage('/');
     const body = await page.innerHTML('body');
     expect(body).toContain('Works!');
-  });
+  }, 100000);
 });
 
 describe('browser type', () => {
+  beforeEach(() => {
+    jest.setTimeout(100000);
+  });
+
   setupTest({
     fixture: 'fixtures/basic',
     browserOptions: {
-      // @ts-expect-error
       type: 'foo',
     },
   });
