@@ -19,5 +19,6 @@ module.exports = {
     camelcase: 'off',
     'no-underscore-dangle': 'off',
     'no-console': 'off',
+    'no-undef': 'off',
   },
 };

@@ -1,7 +1,5 @@
 /* eslint-disable no-param-reassign */
-
-// temp
-
+// eslint-disable-next-line func-names
 export default function ({
   $axios, store, redirect, app,
 }) {
