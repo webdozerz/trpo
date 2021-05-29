@@ -5,4 +5,5 @@ export default {
   getProfile: (state) => state.profile,
   getAccessToken: (state) => state.tokens.access,
   getUserStatus: (state) => state.status,
+  rooms: (state) => state.rooms,
 };

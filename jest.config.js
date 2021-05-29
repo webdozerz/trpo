@@ -1,7 +1,4 @@
 module.exports = {
-  preset: '@nuxt/test-utils',
-  transformIgnorePatterns: [
-    'node_modules/(?!@ngrx|(?!deck.gl)|ng-dynamic)',
-  ],
-  setupFilesAfterEnv: ['./jest.setup.js'],
+  collectCoverage: true,
+  collectCoverageFrom: ['<rootDir>/store/**/*.(vue|js)'],
 };
