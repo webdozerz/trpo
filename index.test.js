@@ -1,5 +1,9 @@
 import { setupTest, createPage } from '@nuxt/test-utils';
 
+beforeAll(async () => {
+  jest.setTimeout(10000); // change timeout to 10 seconds
+});
+
 describe('browser', () => {
   setupTest({
     fixture: 'fixtures/basic',
