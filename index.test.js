@@ -1,13 +1,12 @@
 import { setupTest, createPage } from '@nuxt/test-utils';
 
 describe('browser', () => {
-  beforeEach(() => {
-    jest.setTimeout(100000);
-  });
-
   setupTest({
     fixture: 'fixtures/basic',
     browser: true,
+    browserOptions: {
+      type: 'chromium',
+    },
   });
 
   test('should render page', async () => {
@@ -25,7 +24,7 @@ describe('browser type', () => {
   setupTest({
     fixture: 'fixtures/basic',
     browserOptions: {
-      type: 'foo',
+      type: 'chromium',
     },
   });
 
