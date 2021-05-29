@@ -1,5 +1,5 @@
 {
-  "name": "frontend-starter-kit",
+  "name": "trpo",
   "version": "1.0.0",
   "private": true,
   "scripts": {
@@ -12,25 +12,25 @@
   },
   "dependencies": {
     "@nuxtjs/axios": "^5.12.0",
+    "@nuxtjs/firebase": "^7.5.0",
     "bootstrap": "^4.5.0",
-    "bootstrap-vue": "^2.15.0",
+    "bootstrap-vue": "^2.21.2",
     "cookie-universal-nuxt": "^2.1.4",
-    "eslint-config-airbnb-base": "^14.2.0",
-    "nuxt": "^2.14.0",
-    "nuxt-i18n": "^6.13.12",
-    "v-mask": "^2.2.3",
-    "vee-validate": "^3.3.9",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "firebase": "^8.6.3",
+    "firebase-tools": "^9.12.0",
+    "nuxt": "^2.15.6",
     "vue": "^2.6.12"
   },
   "devDependencies": {
     "@nuxtjs/dotenv": "^1.4.1",
-    "@nuxtjs/eslint-config": "^3.1.0",
-    "@nuxtjs/eslint-module": "^2.0.0",
+    "@nuxtjs/eslint-config": "^6.0.0",
+    "@nuxtjs/eslint-module": "^3.0.2",
     "@nuxtjs/style-resources": "^1.0.0",
     "babel-eslint": "^10.1.0",
-    "eslint": "^7.5.0",
-    "eslint-plugin-nuxt": "^1.0.0",
-    "node-sass": "^4.14.1",
-    "sass-loader": "^10.0.1"
+    "eslint": "^7.27.0",
+    "eslint-plugin-nuxt": "^2.0.0",
+    "node-sass": "^6.0.0",
+    "sass-loader": "^10.1.1"
   }
 }

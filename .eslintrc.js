@@ -18,5 +18,6 @@ module.exports = {
     'max-len': 'off',
     camelcase: 'off',
     'no-underscore-dangle': 'off',
+    'no-console': 'off',
   },
 };
