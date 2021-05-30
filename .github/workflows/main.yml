@@ -8,6 +8,7 @@ on:
 jobs:
   Test:
     runs-on: ubuntu-latest
+
     steps:
       - uses: actions/checkout@v2
       - name: Use Node.js ${{ matrix.node-version }}
@@ -26,13 +27,14 @@ jobs:
   CheckCodestyle:
     needs: Test
     runs-on: ubuntu-latest
+
     steps:
       - uses: actions/checkout@v2
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v2
         with:
           node-version: '14'
-      - name: Install and check codestyle
+      - name: Check codestyle
         run: |
           npm install
           npm run lint
@@ -43,13 +45,12 @@ jobs:
   BuildAndDeploy:
     needs: CheckCodestyle
     runs-on: ubuntu-latest
+
     steps:
       - name: Build
         run: |
           npm ci
           npm run build
-        env:
-          CI: true
       - name: Deploy
       - uses: actions/checkout@v2
       - uses: FirebaseExtended/action-hosting-deploy@v0
