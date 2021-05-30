@@ -3,3 +3,9 @@ dist
 test/*
 test
 index.test.js
+node_modules
+npm-debug.log
+.nuxt
+backup
+.idea
+.env
