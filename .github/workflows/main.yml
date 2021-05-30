@@ -15,10 +15,9 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: '14'
-      - name: Install, build, test
+      - name: Install, test
         run: |
           npm ci
-          npm run build
           npm test
         env:
           CI: true
@@ -46,6 +45,8 @@ jobs:
     needs: CheckCodestyle
     runs-on: ubuntu-latest
     steps:
+      - name: Install dependencies
+        run: npm install
       - name: Generate files
         run: npm run generate
       - uses: actions/checkout@v2
