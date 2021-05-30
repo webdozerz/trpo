@@ -6,9 +6,8 @@ on:
       - master
 
 jobs:
-  buildAndTest:
+  Test:
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v2
       - name: Use Node.js ${{ matrix.node-version }}
@@ -24,10 +23,9 @@ jobs:
           CI: true
 
 
-  checkCodestyle:
-    needs: buildAndTest
+  CheckCodestyle:
+    needs: Test
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v2
       - name: Use Node.js ${{ matrix.node-version }}
@@ -42,14 +40,17 @@ jobs:
           CI: true
 
 
-  build_and_deploy:
-    needs: checkCodestyle
+  BuildAndDeploy:
+    needs: CheckCodestyle
     runs-on: ubuntu-latest
     steps:
-      - name: Build, Deploy
+      - name: Build
         run: |
-          npm install
+          npm ci
           npm run build
+        env:
+          CI: true
+      - name: Deploy
       - uses: actions/checkout@v2
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
