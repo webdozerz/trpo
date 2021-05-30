@@ -23,6 +23,7 @@ jobs:
         env:
           CI: true
 
+
   CheckCodestyle:
     needs: Test
     runs-on: ubuntu-latest
@@ -33,19 +34,18 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: '14'
-      - name: Check codestyle
+      - name: Install and check codestyle
         run: |
           npm install
           npm run lint
         env:
           CI: true
 
-  BuildAndDeploy:
+
+  Build_And_Deploy:
     needs: CheckCodestyle
     runs-on: ubuntu-latest
-
     steps:
-      - name: Deploy
       - uses: actions/checkout@v2
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
