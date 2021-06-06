@@ -1,1 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[5],{301:function(n,t,e){"use strict";e.r(t);var o={name:"Index",mounted:function(){this.$router.push("/rooms")}},r=e(63),component=Object(r.a)(o,(function(){var n=this,t=n.$createElement;return(n._self._c||t)("div",{staticClass:"main"},[n._v("\n  Main\n")])}),[],!1,null,null,null);t.default=component.exports}}]);

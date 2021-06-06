@@ -1,7 +1,7 @@
 import 'jsdom-global/register';
 
 import { mount } from '@vue/test-utils';
-import Rooms from '../components/Rooms.vue';
+import Rooms from '@/components/Logo.vue';
 import mutations from "@/store/user/mutations.js"
 
 describe('Component', () => {
