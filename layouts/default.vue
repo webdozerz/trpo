@@ -6,12 +6,14 @@
           <div class="head__links">
             <n-link
               class="head__link"
+              exact-active-class="head__link_active"
               to="/guest"
             >
               Гости
             </n-link>
             <n-link
               class="head__link"
+              exact-active-class="head__link_active"
               to="/rooms"
             >
               Номера
@@ -68,7 +70,10 @@
   }
   &__link {
      text-decoration: none;
-     color: black;
+     color: rgba(black, .7);
+     &_active {
+       color: black;
+     }
    }
 }
 </style>

@@ -61,24 +61,24 @@ export default {
   data: () => ({
     rooms: [],
   }),
-  async fetch() {
+  async created() {
     await this.getRoomsList();
   },
   methods: {
     async getRoomsList() {
       const ref = await this.$fire.firestore.collection('rooms');
       try {
-        const docs = [];
-        ref.get().then((querySnapshot) => {
-          querySnapshot.forEach((doc) => {
-            const item = {
-              id: doc.id,
-              data: doc.data(),
+        ref.onSnapshot((doc) => {
+          const docs = [];
+          doc.forEach((item) => {
+            const result = {
+              id: item.id,
+              data: item.data(),
             };
-            docs.push(item);
+            docs.push(result);
           });
+          this.rooms = JSON.parse(JSON.stringify(docs));
         });
-        this.rooms = docs;
       } catch (e) {
         console.log(e);
       }

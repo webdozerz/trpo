@@ -4,15 +4,51 @@
     class="content"
   >
     <div class="info">
+      <div class="info__actions">
+        <b-btn
+          v-if="info.rooms.number"
+          variant="outline-danger"
+          @click="createInvoice()"
+        >
+          Выставить счет
+        </b-btn>
+        <b-btn
+          v-if="info.rooms.number"
+          v-b-modal.modal-off-contract
+          variant="outline-danger"
+        >
+          Завершить договор
+        </b-btn>
+        <b-btn
+          v-if="info.rooms.number"
+          variant="outline-info"
+          @click="printContract()"
+        >
+          Распечатать договор
+        </b-btn>
+        <b-button
+          v-if="info.rooms.number"
+          v-b-modal.modal-add
+          variant="outline-info"
+        >
+          Добавить доп. сервис
+        </b-button>
+      </div>
       <div class="info__items">
         <div class="info__item">
           ФИО: {{ info.profile.fio }}
         </div>
         <div
-          v-if="info.rooms.current"
+          v-if="info.rooms.number"
           class="info__item"
         >
-          Номер: {{ info.rooms.current }}
+          Номер: {{ info.rooms.number }}
+        </div>
+        <div
+          v-if="info.rooms.days"
+          class="info__item"
+        >
+          Количество дней: {{ info.rooms.days }}
         </div>
         <div class="info__item">
           Телефон: {{ info.profile.phone }}
@@ -24,7 +60,7 @@
           Место регистрации: {{ info.profile.placeOfRegistration }}
         </div>
         <div
-          v-if="info.invoice.dailyServices"
+          v-if="info.invoice.dailyServices && info.rooms.number"
           class="info__item"
         >
           Дневные сервисы:
@@ -68,18 +104,13 @@
           </ul>
         </div>
         <div
-          v-if="info.invoice.additionalServices.length"
+          v-if="info.rooms.number"
           class="info__item"
         >
           <div class="info__actions">
             <span>
               Дополнительные сервисы:
             </span>
-            <b-button
-              v-b-modal.modal-add
-            >
-              Добавить
-            </b-button>
           </div>
           <b-table
             :fields="fields"
@@ -118,6 +149,14 @@
           />
         </div>
       </div>
+    </b-modal>
+    <b-modal
+      id="modal-off-contract"
+      centered
+      title="Подтвердите действие"
+      @ok="disableContract()"
+    >
+      Вы уверены ?
     </b-modal>
   </div>
 </template>
@@ -163,6 +202,36 @@ export default {
     },
   },
   methods: {
+    createInvoice() {
+      const wnd = window.open(`/invoice/${this.$route.params.id}`);
+      wnd.print();
+    },
+    async disableContract() {
+      const ref = await this.$fire.firestore.collection('guest').doc(this.$route.params.id);
+      try {
+        ref.update({
+          'invoice.dailyServices': {
+            breakfast: false,
+            cleaning: false,
+            dinner: false,
+            lunch: false,
+          },
+          rooms: {
+            current: null,
+            number: null,
+            days: null,
+          },
+          'invoice.additionalServices': [],
+        });
+        await this.getUserInfo();
+      } catch (e) {
+        this.showToast(e, 'Ошибка');
+      }
+    },
+    printContract() {
+      const wnd = window.open('/Dogovor-o-predostavlenii-gostinichnyh-uslug.pdf');
+      wnd.print();
+    },
     async addAdditionalService() {
       const docData = this.additional;
       docData.sum = this.summary;
@@ -171,8 +240,9 @@ export default {
         ref.update({
           'invoice.additionalServices': firebase.firestore.FieldValue.arrayUnion(docData),
         });
+        await this.getUserInfo();
       } catch (e) {
-        console.log(e);
+        this.showToast(e, 'Ошибка');
       }
     },
     totalSum(array) {
@@ -190,8 +260,11 @@ export default {
       try {
         const refDoc = await ref.get();
         this.info = refDoc.data();
+        ref.onSnapshot((doc) => {
+          this.info = doc.data();
+        });
       } catch (e) {
-        console.log(e);
+        this.showToast(e, 'Ошибка');
       }
     },
   },
@@ -206,8 +279,9 @@ export default {
 .info {
   width: 100%;
   &__actions {
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 30px;
     align-items: center;
     margin: 20px 0;
   }
