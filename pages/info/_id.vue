@@ -203,8 +203,7 @@ export default {
   },
   methods: {
     createInvoice() {
-      const wnd = window.open(`/invoice/${this.$route.params.id}`);
-      wnd.print();
+      this.$router.push(`/invoice/${this.$route.params.id}`);
     },
     async disableContract() {
       const ref = await this.$fire.firestore.collection('guest').doc(this.$route.params.id);

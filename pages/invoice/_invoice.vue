@@ -1,5 +1,16 @@
 <template>
-  <div class="invoice">
+  <div
+    v-if="guestInfo"
+    class="invoice"
+  >
+    <div class="invoice__actions no-print">
+      <b-btn
+        variant="outline-info"
+        @click="printInvoice()"
+      >
+        Печать
+      </b-btn>
+    </div>
     <div class="invoice__title">
       Счет №{{ Math.floor(Math.random() * 1000000) }} от договора №{{ Math.floor(Math.random() * 1000000) }}
     </div>
@@ -22,9 +33,6 @@ export default {
   data: () => ({
     guestInfo: null,
   }),
-  async fetch() {
-    await this.getUserInfo();
-  },
   computed: {
     fields() {
       return [
@@ -47,7 +55,13 @@ export default {
       ];
     },
   },
+  async mounted() {
+    await this.getUserInfo();
+  },
   methods: {
+    printInvoice() {
+      window.print();
+    },
     async getUserInfo() {
       const ref = await this.$fire.firestore.collection('guest').doc(this.$route.params.invoice);
       try {
@@ -76,8 +90,19 @@ export default {
 
 <style lang="scss" scoped>
 .invoice {
-    &__title {
-      margin-bottom: 20px;
-    }
+  &__actions {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 30px;
+    margin: 20px 0;
+  }
+  &__title {
+    margin-bottom: 20px;
+  }
+}
+@media print {
+  .no-print {
+    visibility: hidden;
+  }
 }
 </style>
